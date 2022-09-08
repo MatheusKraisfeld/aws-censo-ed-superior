@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: airflow
+  name: airflow-variables
+data:
+  AIRFLOW_MY_VAR: MY_VAR
