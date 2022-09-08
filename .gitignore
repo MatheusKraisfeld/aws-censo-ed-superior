@@ -130,6 +130,8 @@ dmypy.json
 
 # Infracost
 */.infracost/*
+*/*/.infracost/*
 
 # Terraform
 */.terraform/*
+*/*/.terraform/*

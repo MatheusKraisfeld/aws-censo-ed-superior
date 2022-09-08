@@ -36,37 +36,37 @@ resource "kubernetes_namespace" "airflow" {
   }
 }
 
-resource "kubernetes_deployment" "airflow" {
-  metadata {
-    name      = var.application_name
-    namespace = kubernetes_namespace.airflow.id
-    labels = {
-      app = var.application_name
-    }
-  }
+# resource "kubernetes_deployment" "airflow" {
+#   metadata {
+#     name      = var.application_name
+#     namespace = kubernetes_namespace.airflow.id
+#     labels = {
+#       app = var.application_name
+#     }
+#   }
 
-  spec {
-    replicas = 1
-    selector {
-      match_labels = {
-        app = var.application_name
-      }
-    }
-    template {
-      metadata {
-        labels = {
-          app = var.application_name
-        }
-      }
-      spec {
-        container {
-          image = "apache/airflow:2.1.0"
-          name  = var.application_name
-        }
-      }
-    }
-  }
-}
+#   spec {
+#     replicas = 1
+#     selector {
+#       match_labels = {
+#         app = var.application_name
+#       }
+#     }
+#     template {
+#       metadata {
+#         labels = {
+#           app = var.application_name
+#         }
+#       }
+#       spec {
+#         container {
+#           image = "apache/airflow:2.1.0"
+#           name  = var.application_name
+#         }
+#       }
+#     }
+#   }
+# }
 
 # resource "kubernetes_service" "airflow" {
 #   metadata {
