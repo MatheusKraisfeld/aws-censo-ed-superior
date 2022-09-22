@@ -15,6 +15,7 @@ resource "helm_release" "airflow" {
   repository = "https://airflow-helm.github.io/charts"
   chart      = "airflow"
   namespace  = "airflow"
+  version    = "8.6.1"
 
   values = [
     "${file("airflow-values.yaml")}"

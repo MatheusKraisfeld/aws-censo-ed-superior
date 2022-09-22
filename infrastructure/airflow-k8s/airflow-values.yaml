@@ -63,7 +63,7 @@ images:
   # to run and wait for DB migrations .
   useDefaultImageForMigration: false
   # timeout (in seconds) for airflow-migrations to complete
-  migrationsWaitTimeout: 60
+  migrationsWaitTimeout: 120
   pod_template:
     repository: ~
     tag: ~
@@ -815,13 +815,13 @@ webserver:
   allowPodLogReading: true
   livenessProbe:
     initialDelaySeconds: 15
-    timeoutSeconds: 30
+    timeoutSeconds: 60
     failureThreshold: 20
     periodSeconds: 5
 
   readinessProbe:
     initialDelaySeconds: 15
-    timeoutSeconds: 30
+    timeoutSeconds: 60
     failureThreshold: 20
     periodSeconds: 5
 
@@ -906,15 +906,15 @@ webserver:
     type: LoadBalancer
     ## service annotations
     annotations: 
-      
-    ports:
-      - name: airflow-ui
-        port: "{{ .Values.ports.airflowUI }}"
-    # To change the port used to access the webserver:
+      service.beta.kubernetes.io/aws-load-balancer-internal: "true"
     # ports:
     #   - name: airflow-ui
-    #     port: 80
-    #     targetPort: airflow-ui
+    #     port: "{{ .Values.ports.airflowUI }}"
+    # To change the port used to access the webserver:
+    ports:
+      - name: airflow-ui
+        port: 80
+        targetPort: airflow-ui
     # To only expose a sidecar, not the webserver directly:
     # ports:
     #   - name: only_sidecar
@@ -1051,7 +1051,7 @@ triggerer:
 flower:
   # Enable flower.
   # If True, and using CeleryExecutor/CeleryKubernetesExecutor, will deploy flower app.
-  enabled: true
+  enabled: false
 
   # Command to use when running flower (templated).
   command: ~
@@ -1659,4 +1659,3 @@ subjects:
   - kind: ServiceAccount
     name: airflow-worker
     namespace: airflow
-    
