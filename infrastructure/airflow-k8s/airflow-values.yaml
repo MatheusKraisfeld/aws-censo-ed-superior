@@ -743,7 +743,7 @@ createUserJob:
   tolerations: []
   # In case you need to disable the helm hooks that create the jobs after install.
   # Disable this if you are using ArgoCD for example
-  useHelmHooks: true
+  useHelmHooks: false
 
   resources: {}
   #  limits:
@@ -788,13 +788,13 @@ migrateDatabaseJob:
     # Annotations to add to migrate database job kubernetes service account.
     annotations: {}
 
-  resources: {}
-  #  limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  #  requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  resources: 
+    # limits:
+    #   cpu: 100m
+    # memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
 
   # Launch additional containers into database migration job
   extraContainers: []
@@ -808,7 +808,7 @@ migrateDatabaseJob:
   tolerations: []
   # In case you need to disable the helm hooks that create the jobs after install.
   # Disable this if you are using ArgoCD for example
-  useHelmHooks: true
+  useHelmHooks: false
 
 # Airflow webserver settings
 webserver:
@@ -906,15 +906,18 @@ webserver:
     type: LoadBalancer
     ## service annotations
     annotations: 
-      service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-    # ports:
-    #   - name: airflow-ui
-    #     port: "{{ .Values.ports.airflowUI }}"
-    # To change the port used to access the webserver:
+      # service.beta.kubernetes.io/aws-load-balancer-type: external
+      # service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+
     ports:
       - name: airflow-ui
-        port: 80
-        targetPort: airflow-ui
+        port: "{{ .Values.ports.airflowUI }}"
+        targetPort: "{{ .Values.ports.airflowUI }}"
+    # To change the port used to access the webserver:
+    # ports:
+    #   - name: airflow-ui
+    #     port: 80
+    #     targetPort: airflow-ui
     # To only expose a sidecar, not the webserver directly:
     # ports:
     #   - name: only_sidecar
@@ -1051,7 +1054,7 @@ triggerer:
 flower:
   # Enable flower.
   # If True, and using CeleryExecutor/CeleryKubernetesExecutor, will deploy flower app.
-  enabled: false
+  enabled: true
 
   # Command to use when running flower (templated).
   command: ~

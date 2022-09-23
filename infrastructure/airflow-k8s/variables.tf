@@ -7,11 +7,6 @@ variable "application_name" {
   default = "aws-censo-ed-superior"
 }
 
-# variable "slack_app_token" {
-#   type        = string
-#   description = "Slack App Token"
-# }
-
 # ------------------------------------------------------------
 # Airflow Settings
 # ------------------------------------------------------------

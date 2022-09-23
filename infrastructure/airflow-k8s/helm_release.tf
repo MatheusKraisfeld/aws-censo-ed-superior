@@ -12,10 +12,11 @@ provider "helm" {
 
 resource "helm_release" "airflow" {
   name       = "airflow"
-  repository = "https://airflow-helm.github.io/charts"
+  repository = "https://airflow.apache.org"
   chart      = "airflow"
   namespace  = "airflow"
-  version    = "8.6.1"
+  version    = "1.6.0"
+  wait       = false
 
   values = [
     "${file("airflow-values.yaml")}"
