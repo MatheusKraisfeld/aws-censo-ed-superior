@@ -42,6 +42,7 @@ BASE_DIR = tempfile.gettempdir()
 
 with DAG(
     dag_id='example_python_operator',
+    schedule_interval='@hourly',
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
     tags=['example'],
