@@ -11,29 +11,50 @@ provider "helm" {
 }
 
 resource "helm_release" "airflow" {
-  name       = "airflow"
-  repository = "https://airflow.apache.org"
-  chart      = "airflow"
-  namespace  = "airflow"
-  version    = "1.6.0"
-  wait       = false
+  # repository = "https://charts.bitnami.com/bitnami"
+  # chart      = "airflow"
+  # name       = "airflow"
+  # version    = "13.1.6"
+  # namespace  = "airflow"
+  # wait       = false
+
+  # values = [
+  #   "${file("airflow-values-bitnami.yaml")}"
+  # ]
+
+  # repository        = "https://airflow-helm.github.io/charts"
+  # chart             = "airflow"
+  # name              = "airflow"
+  # version           = "8.6.1"
+  # namespace         = "airflow"
+  # wait              = false
+  # dependency_update = true
+
+  # values = [
+  #   "${file("airflow-values-community.yaml")}"
+  # ]
+
+  repository        = "https://airflow.apache.org/"
+  chart             = "airflow"
+  name              = "airflow"
+  version           = "1.6.0"
+  namespace         = "airflow"
+  wait              = false
+  dependency_update = true
 
   values = [
-    "${file("airflow-values.yaml")}"
+    "${file("airflow-values-official.yaml")}"
   ]
 
-  set_sensitive {
-    name  = "controller.adminUser"
-    value = var.airflow_admin_user
-  }
-
-  set_sensitive {
-    name  = "controller.adminPassword"
-    value = var.airflow_admin_password
-  }
-
-  # set {
-  #   name = "controller.replicaCount"
-  #   value = "1"
-  # }
 }
+
+# resource "helm_release" "keda" {
+#   repository        = "https://kedacore.github.io/charts"
+#   chart             = "keda"
+#   name              = "keda"
+#   version           = "v2.0.0"
+#   namespace         = "keda"
+#   wait              = false
+#   dependency_update = true
+
+# }

@@ -35,3 +35,9 @@ resource "kubernetes_namespace" "airflow" {
     name = "airflow"
   }
 }
+
+# resource "kubernetes_namespace" "keda" {
+#   metadata {
+#     name = "keda"
+#   }
+# }
