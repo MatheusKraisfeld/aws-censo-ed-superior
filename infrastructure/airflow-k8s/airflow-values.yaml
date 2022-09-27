@@ -1138,7 +1138,7 @@ flower:
 
 # StatsD settings
 statsd:
-  enabled: true
+  enabled: false
 
   # Create ServiceAccount
   serviceAccount:
@@ -1468,7 +1468,7 @@ config:
   core:
     dags_folder: '{{ include "airflow_dags" . }}'
     # This is ignored when used with the official Docker image
-    load_examples: 'False'
+    load_examples: 'True'
     executor: '{{ .Values.executor }}'
     # For Airflow 1.10, backward compatibility; moved to [logging] in 2.0
     colored_console_log: 'False'
@@ -1567,7 +1567,7 @@ dags:
     ## optional subpath for dag volume mount
     subPath: ~
   gitSync:
-    enabled: false
+    enabled: true
 
     # git repo clone url
     # ssh examples ssh://git@github.com/apache/airflow.git
