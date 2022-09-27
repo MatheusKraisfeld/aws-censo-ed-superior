@@ -13,5 +13,5 @@ variable "cluster_name" {
 variable "db_password" {
   description = "RDS root user password"
   sensitive   = true
-  default     = "Administrator" # This is a bad practice. You should use a password manager to generate a random password.
+  default     = "" # This is a bad practice. You should use a password manager to generate a random password.
 }

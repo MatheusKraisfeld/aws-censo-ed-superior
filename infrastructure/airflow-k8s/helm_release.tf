@@ -11,28 +11,6 @@ provider "helm" {
 }
 
 resource "helm_release" "airflow" {
-  # repository = "https://charts.bitnami.com/bitnami"
-  # chart      = "airflow"
-  # name       = "airflow"
-  # version    = "13.1.6"
-  # namespace  = "airflow"
-  # wait       = false
-
-  # values = [
-  #   "${file("airflow-values-bitnami.yaml")}"
-  # ]
-
-  # repository        = "https://airflow-helm.github.io/charts"
-  # chart             = "airflow"
-  # name              = "airflow"
-  # version           = "8.6.1"
-  # namespace         = "airflow"
-  # wait              = false
-  # dependency_update = true
-
-  # values = [
-  #   "${file("airflow-values-community.yaml")}"
-  # ]
 
   repository        = "https://airflow.apache.org/"
   chart             = "airflow"
@@ -43,7 +21,7 @@ resource "helm_release" "airflow" {
   dependency_update = true
 
   values = [
-    "${file("airflow-values-official.yaml")}"
+    "${file("airflow-values.yaml")}"
   ]
 
 }
