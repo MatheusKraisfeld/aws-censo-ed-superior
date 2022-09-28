@@ -1,0 +1,5 @@
+pandas==1.4.1
+boto3==1.21.42
+delta-spark==1.2.0
+awswrangler
+unidecode

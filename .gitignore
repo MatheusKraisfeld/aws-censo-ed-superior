@@ -136,4 +136,3 @@ dmypy.json
 */.terraform/*
 */*/.terraform/*
 */*/terraform.tfstate*
-infrastructure/airflow-k8s/terraform.tfstate
