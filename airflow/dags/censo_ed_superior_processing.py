@@ -23,7 +23,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 s3 = boto3.client("s3")
 url = "https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-da-educacao-superior"
-bucket_path = "aws-censo-ed-superior"
+bucket_path = "aws-censo-ed-superior-landing"
 aws_access_key_id = Variable.get("aws_access_key_id")
 aws_secret_access_key = Variable.get("aws_secret_access_key")
 glue = boto3.client(
